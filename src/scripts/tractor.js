@@ -10,7 +10,7 @@ export const plantSeeds = (plantingPlan) => {
     const seeds = []
 
     for (let row of plantingPlan) {
-        
+
         for (let plant of row) {
             if (plant === "Asparagus") {
                 let asparagusPlant = createAsparagus(plant)
@@ -27,10 +27,10 @@ export const plantSeeds = (plantingPlan) => {
             } else if (plant === "Wheat") {
                 let wheatPlant = createWheat(plant)
                 seeds.push(wheatPlant)
-            } elseif (plant === "Sunflower") {
+            } else if (plant === "Sunflower") {
                 let sunflowerPlant = createSunflower(plant)
                 seeds.push(sunflowerPlant)
-            } else 
+            }
         }
     }
 
