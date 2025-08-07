@@ -6,5 +6,9 @@ import { createSoybean } from "./seeds/soybean.js";
 import { createWheat } from "./seeds/wheat.js";
 import { createSunflower } from "./seeds/sunflower.js";
 import { addPlant, usePlants } from "./field.js"
+import { plantSeeds} from "./tractor.js"
 
 const yearlyPlan = createPlan();
+const plantsArray = plantSeeds(yearlyPlan);
+
+console.log(plantsArray)
