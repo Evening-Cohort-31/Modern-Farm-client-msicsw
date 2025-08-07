@@ -35,10 +35,12 @@ note over tractor.js #98FB98: **Test Step 2:**\nIterate each row (array) & type 
 
 note over planttype.js #90EE90: **Part of Test Step 2:**\nImport all seed functions from individual files
 
-loop #ADFF2F for each row & plant
+loop #ADFF2F for each row of yearlyPlan
+loop #ADFF2F for each plant of the row
   tractor.js-#2E8B57>planttype.js: <color:#1E90FF>**createPlant()**</color>
   planttype.js--#2E8B57>tractor.js: plant object
   tractor.js-#8B4513>field.js: <color:#1E90FF>**addPlant()**</color>
+end
 end
 
 tractor.js--#228B22>main.js: planting complete
@@ -55,7 +57,7 @@ harvester.js--#A0522D>main.js: *harvestedFood* array
 note over main.js #90EE90: **Not Included in Tests**\nImport <color:#1E90FF>**catalog**</color> from catalog.js
 main.js-#CD853F>catalog.js: <color:#1E90FF>**catalog(*harvestedFood*)**</color>
 
-loop #FFE4B5 for each food object in *harvestedFood*\n(Append to <main>)
+loop #FFE4B5 for each food object in *harvestedFood* (append to <main>)
   catalog.js-#CD853F>index.html: innerHTML += <section class="plant">{food.type}</section>
   note over catalog.js,index.html #FFFACD: Iterates through *harvestedFood* array.\nEach item creates a <section class="plant"> with the food name.
 end
