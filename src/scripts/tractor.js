@@ -4,34 +4,32 @@ import { createCorn } from "./seeds/corn.js";
 import { createSoybean } from "./seeds/soybean.js";
 import { createWheat } from "./seeds/wheat.js";
 import { createSunflower } from "./seeds/sunflower.js";
+import { addPlant } from "./field.js";
 
 // Define and export plantSeeds function, must accept the years plantingPlan as input, invoke the corresponding factory function, take that seed and at it to the array in field.js
 export const plantSeeds = (plantingPlan) => {
-  const seeds = [];
 
   for (let row of plantingPlan) {
     for (let plant of row) {
       if (plant === "Asparagus") {
         let asparagusPlant = createAsparagus(plant);
-        seeds.push(asparagusPlant);
+        addPlant(asparagusPlant);
       } else if (plant === "Potato") {
         let potatoPlant = createPotato(plant);
-        seeds.push(potatoPlant);
+        addPlant(potatoPlant);
       } else if (plant === "Soybean") {
         let soybeanPlant = createSoybean(plant);
-        seeds.push(soybeanPlant);
+        addPlant(soybeanPlant);
       } else if (plant === "Corn") {
         let cornPlant = createCorn(plant);
-        seeds.push(cornPlant);
+        addPlant(cornPlant);
       } else if (plant === "Wheat") {
         let wheatPlant = createWheat(plant);
-        seeds.push(wheatPlant);
+        addPlant(wheatPlant);
       } else if (plant === "Sunflower") {
         let sunflowerPlant = createSunflower(plant);
-        seeds.push(sunflowerPlant);
+        addPlant(sunflowerPlant);
       }
     }
   }
-
-  return seeds;
 };
