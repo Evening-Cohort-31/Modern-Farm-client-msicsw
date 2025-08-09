@@ -4,37 +4,37 @@ import { createCorn } from "./seeds/corn.js";
 import { createSoybean } from "./seeds/soybean.js";
 import { createWheat } from "./seeds/wheat.js";
 import { createSunflower } from "./seeds/sunflower.js";
+import { addPlant } from "./field.js";
 
 // Define and export plantSeeds function, must accept the years plantingPlan as input, invoke the corresponding factory function, take that seed and at it to the array in field.js
 export const plantSeeds = (plantingPlan) => {
-    const seeds = []
+    let myField = []
 
-    for (let row of plantingPlan) {
+    for (const row of plantingPlan) {
 
-        for (let plant of row) {
+        for (const plant of row) {
             if (plant === "Asparagus") {
-                let asparagusPlant = createAsparagus(plant)
-                seeds.push(asparagusPlant)
+                const asparagusPlant = createAsparagus()
+                myField = addPlant(asparagusPlant)
             } else if (plant === "Potato") {
-                let potatoPlant = createPotato(plant)
-                seeds.push(potatoPlant)
+                const potatoPlant = createPotato()
+                myField = addPlant(potatoPlant)
             } else if (plant === "Soybean") {
-                let soybeanPlant = createSoybean(plant)
-                seeds.push(soybeanPlant)
+                const soybeanPlant = createSoybean()
+                myField = addPlant(soybeanPlant)
             } else if (plant === "Corn") {
-                let cornPlant = createCorn(plant)
-                seeds.push(cornPlant)
+                const cornPlant = createCorn()
+                myField = addPlant(cornPlant)
             } else if (plant === "Wheat") {
-                let wheatPlant = createWheat(plant)
-                seeds.push(wheatPlant)
+                const wheatPlant = createWheat()
+                myField = addPlant(wheatPlant)
             } else if (plant === "Sunflower") {
-                let sunflowerPlant = createSunflower(plant)
-                seeds.push(sunflowerPlant)
+                const sunflowerPlant = createSunflower()
+                myField = addPlant(sunflowerPlant)
             }
         }
     }
-
-    return seeds
+    return myField
 }
 
 
