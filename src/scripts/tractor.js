@@ -18,75 +18,35 @@ import { addPlant } from "./field.js";
  * - Passes the result to the addPlant() function from field.js
  */
 export const plantSeeds = (plantingPlan) => {
-  // Outer loop: each "row" is a sub-array representing one row of crops
+  const seeds = []
+
   for (let row of plantingPlan) {
 
-    // Inner loop: each "plant" is a string crop type in the current row
     for (let plant of row) {
-
-      // Each if-block checks the plant type and calls the corresponding seed factory
-      // The created seed is then added to the field using addPlant()
-
       if (plant === "Asparagus") {
-        let asparagusPlant = createAsparagus();
-        addPlant(asparagusPlant);
-
+        let asparagusPlant = createAsparagus(plant)
+        seeds.push(asparagusPlant)
       } else if (plant === "Potato") {
-        let potatoPlant = createPotato();
-        addPlant(potatoPlant);
-
+        let potatoPlant = createPotato(plant)
+        seeds.push(potatoPlant)
       } else if (plant === "Soybean") {
-        let soybeanPlant = createSoybean();
-        addPlant(soybeanPlant);
-
+        let soybeanPlant = createSoybean(plant)
+        seeds.push(soybeanPlant)
       } else if (plant === "Corn") {
-        let cornPlant = createCorn(); // Returns an array of 2 corn objects
-        addPlant(cornPlant); // addPlant() handles array vs. single object
-
+        let cornPlant = createCorn(plant)
+        seeds.push(cornPlant)
       } else if (plant === "Wheat") {
-        let wheatPlant = createWheat();
-        addPlant(wheatPlant);
-
+        let wheatPlant = createWheat(plant)
+        seeds.push(wheatPlant)
       } else if (plant === "Sunflower") {
-        let sunflowerPlant = createSunflower();
-        addPlant(sunflowerPlant);
-      }
-
-    }
-  }
-};
-
-
-/*
- * Alternative refactored version of plantSeeds() using a mapping object.
- * This version eliminates repetitive if/else statements.
- */
-
-/*
-export const plantSeeds = (plantingPlan) => {
-  // Mapping of plant names to their corresponding factory functions
-  const seedFactoryMap = {
-    "Asparagus": createAsparagus,
-    "Potato": createPotato,
-    "Soybean": createSoybean,
-    "Corn": createCorn,        // Corn still returns an array of two objects
-    "Wheat": createWheat,
-    "Sunflower": createSunflower
-  };
-
-  // Loop through each row in the planting plan
-  for (let row of plantingPlan) {
-    // Loop through each crop name in the row
-    for (let plant of row) {
-      // Get the matching factory function from the map
-      const createSeed = seedFactoryMap[plant];
-
-      // If a valid factory function exists for this plant type
-      if (createSeed) {
-        const seed = createSeed(); // Create the seed object (or array for Corn)
-        addPlant(seed);            // Pass it to field.js to store
+        let sunflowerPlant = createSunflower(plant)
+        seeds.push(sunflowerPlant)
       }
     }
   }
-};
-*/
+
+  return seeds
+}
+
+
+console.log(createAsparagus)

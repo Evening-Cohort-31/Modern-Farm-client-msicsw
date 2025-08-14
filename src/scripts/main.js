@@ -1,12 +1,14 @@
 // ─── Import Required Functions from Modules ─────────────────────────────
 import { createPlan } from "./plan.js";
-import { usePlants } from "./field.js";
-import { plantSeeds } from "./tractor.js";
-import { harvestPlants } from "./harvester.js";
-import { Catalog } from "./catalog.js";
+import { createAsparagus } from "./seeds/asparagus.js";
+import { createPotato } from "./seeds/potato.js";
+import { createCorn } from "./seeds/corn.js";
+import { createSoybean } from "./seeds/soybean.js";
+import { createWheat } from "./seeds/wheat.js";
+import { createSunflower } from "./seeds/sunflower.js";
+import { addPlant, usePlants } from "./field.js"
+import { plantSeeds } from "./tractor.js"
 
-// ─── Core Requirement #1 ────────────────────────────────────────────────
-// Generate the 3x6 yearly planting plan using createPlan()
 const yearlyPlan = createPlan();
 
 // (Optional) Log the planting plan to the console for visibility
