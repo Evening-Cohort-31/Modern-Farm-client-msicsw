@@ -1,0 +1,65 @@
+title <size:30> <color:#228B22> 🌱 Farming Project Flow
+
+frame #8FBC8F Modern Farm Modules
+
+participantgroup #32CD32 **🌿 Core Scripts**
+  participant main.js
+  participant plan.js
+  participant tractor.js
+  participant field.js
+  participant planttype.js
+  participant harvester.js
+  participant catalog.js
+end
+
+note over planttype.js #98FB98: **Test Step 2:**\nplanttype.js is stand-in for js file exporting\neach <color:#1E90FF>**createPlant**</color> function which \nmakes the seed objects. Plants included\nPotato, Asparagus, Corn, Soybean, \nSunflower, Wheat.
+
+note over main.js #90EE90: **Core Requirement #1**\nImport <color:#1E90FF>**createPlan**</color> function from plan.js\nInvoke <color:#1E90FF>**createPlan**</color> to make *yearlyPlan*
+main.js-#006400>plan.js: <color:#1E90FF>**createPlan()**</color>
+plan.js--#006400>main.js: *yearlyPlan* (array of arrays)
+
+note over planttype.js #90EE90: **Core Requirement #2**\n<color:#1E90FF>**createPlant**</color> export functions developed. Each function\nreturns an object with keys "type", "height", and "output".\n<color:#1E90FF>**createCorn**</color> returns two objects in an array.
+
+note over field.js #90EE90: **Core Requirement #3**\nfield.js has internal array (*fieldPlants*)\n<color:#1E90FF>**addPlant**</color> export function created that accepts seed objects \nand pushes them into the *fieldPlants* array.\n<color:#FF0000>**note: we need to fix addPlant for corn**</color>\n<color:#1E90FF>**usePlants**</color> export function created that returns a copy of *fieldPlants*.
+
+note over tractor.js #90EE90: **Core Requirement #4**\n<color:#1E90FF>**plantSeeds**</color> export function created that accepts\na planting plan input (i.e., an array of 3 arrays).\nThe planting plan is iterated over, invoking corresponding\n<color:#1E90FF>**createPlant**</color> function to get the respective seed object and\nthen invoking <color:#1E90FF>**addPlant**</color> function to add seed object to\nthe array of plants in field.js\n<color:#FF0000>**note: we need to fix if/elseif section to use addPlant**</color>
+
+note over harvester.js #90EE90: **Core Requirement #5**\n<color:#1E90FF>**harvestPlants**</color> export function created that accepts a *plants array* as\ninput and returns an *array of seed objects*.\nNumber of objects added is determined by "output" key on plant objects.\n<color:#1E90FF>**harvestPlants**</color> function will iterate over plant objects looking at\n"output" key and then add that many seed objects to the\n*output array* of seed objects\n<color:#FF0000>**note: corn is an exception so only add half to the returned array**</color>
+
+note over catalog.js #90EE90: **Core Requirement #6**\n<color:#1E90FF>**catalog**</color> export function created that accepts the *harvest food array*.\n<color:#1E90FF>**catalog**</color> function iterates over food objects turning each into HTML code\n<section class="plant">Plant.type</section>
+
+note over main.js #90EE90:**Test Step 1:**\n Import <color:#1E90FF>**plantSeeds**</color> from tractor.js
+main.js-#228B22>tractor.js: <color:#1E90FF>**plantSeeds(*yearlyPlan*)**</color>
+
+note over tractor.js #98FB98: **Test Step 2:**\nIterate each row (array) & type of plant
+
+note over planttype.js #90EE90: **Part of Test Step 2:**\nImport all seed functions from individual files
+
+loop #ADFF2F for each row of yearlyPlan
+loop #ADFF2F for each plant of the row
+  tractor.js-#2E8B57>planttype.js: <color:#1E90FF>**createPlant()**</color>
+  planttype.js--#2E8B57>tractor.js: plant object
+  tractor.js-#8B4513>field.js: <color:#1E90FF>**addPlant()**</color>
+end
+end
+
+tractor.js--#228B22>main.js: planting complete
+
+note over main.js #90EE90: **Test Step 4:** \nGet all plants
+main.js-#8B4513>field.js: <color:#1E90FF>**usePlants()**</color>
+field.js--#8B4513>main.js: *copied array of planted seeds*
+
+note over main.js #90EE90: **Part of Test Step 4:**\nImport <color:#1E90FF>**harvestPlants**</color> from harvester.js
+note over harvester.js #F5DEB3: Corn returns an array with two objects.\nOnly one is added to the *harvestedFood* array.
+main.js-#A0522D>harvester.js: <color:#1E90FF>**harvestPlants(*plants array*)**</color>
+harvester.js--#A0522D>main.js: *harvestedFood* array
+
+note over main.js #90EE90: **Not Included in Tests**\nImport <color:#1E90FF>**catalog**</color> from catalog.js
+main.js-#CD853F>catalog.js: <color:#1E90FF>**catalog(*harvestedFood*)**</color>
+
+loop #FFE4B5 for each food object in *harvestedFood* (append to <main>)
+  catalog.js-#CD853F>index.html: innerHTML += <section class="plant">{food.type}</section>
+  note over catalog.js,index.html #FFFACD: Iterates through *harvestedFood* array.\nEach item creates a <section class="plant"> with the food name.
+end
+
+note over index.html #F0E68C: User sees output
