@@ -1,42 +1,60 @@
-//importing the required functions
+// ─── Import Required Functions from Modules ─────────────────────────────
 import { createPlan } from "./plan.js";
 import { usePlants } from "./field.js";
 import { plantSeeds } from "./tractor.js";
 import { harvestPlants } from "./harvester.js";
 import { Catalog } from "./catalog.js";
 
-// main entry point where we invoke createPlan() to get the yearly planting plan
-//Core Requirement #1
+// ─── Core Requirement #1 ────────────────────────────────────────────────
+// Generate the 3x6 yearly planting plan using createPlan()
 const yearlyPlan = createPlan();
 
-//console log to see the yearly plan (optional)
-console.log(`The yearly plan is:\n` + yearlyPlan.join("\n"));
+// (Optional) Log the planting plan to the console for visibility
+console.log("🌾 The yearly planting plan is:");
+console.log(yearlyPlan.join("\n"));
 
-//Plant the seeds using function from tractor.js
-//Core Requirement #4
+
+// ─── Core Requirement #4 ────────────────────────────────────────────────
+// Plant the seeds according to the plan using plantSeeds()
 plantSeeds(yearlyPlan);
 
-//We can now view the plants in the field by invoking usePlants()
-//the function usePlants() has a return value so it must be stored in a variable
-//Core Requirement #3
+
+// ─── Core Requirement #3 ────────────────────────────────────────────────
+// Retrieve all planted seeds from the field using usePlants()
+// This returns a copy of the internal field array (not the original)
 const plantArray = usePlants();
-//console log to see the plant objects in the field (optional)
-console.log(`The plants in the field are:`);
+
+// (Optional) Log the planted seed objects to the console
+console.log("🌱 Plants currently growing in the field:");
 console.log(plantArray);
 
-//Harvest the plants using function from harvester.js
-//Core Requirement #5
-const harvest = harvestPlants(plantArray)
-//console log to see the harvested plant objects
-console.log(`The harvest is:`);
+
+// ─── Core Requirement #5 ────────────────────────────────────────────────
+// Harvest the crops using harvestPlants()
+// This function calculates how many of each plant should be harvested
+// based on the "output" key (and handles Corn’s special rule)
+const harvest = harvestPlants(plantArray);
+
+// (Optional) Log harvested crop objects
+console.log("🧺 Harvested crop objects:");
 console.log(harvest);
-//show harvested plant objects in a table for better viewing
-console.table(harvest);
 
-//Generate HTML <section> elements for each harvested plant
-//Injects generated HTML into the <main> element inside index.html
-//Core Requirement #6
-//Cannot be viewed in VS Code Debugger. Must use "serve" command
-Catalog(harvest)
+// Display as a table for better readability
+//console.table(harvest);
 
-//ready to run command "npm run test" or "npm test" in terminal
+
+// ─── Core Requirement #6 ────────────────────────────────────────────────
+// Generate HTML to display harvested crops in the DOM
+// This function updates the <main class="container"> element in index.html
+// ⚠️ NOTE: This can’t be viewed in the debug console.
+// To see the output, run your project using the "serve" command
+// Prevents runtime error when running in Node.js (e.g., VS Code debugger).
+// The Catalog() function accesses the DOM, which only exists in the browser.
+if (typeof document !== "undefined") {
+    Catalog(harvest);
+}
+
+// ─── How to Run Your Tests ──────────────────────────────────────────────
+// Run the following in your terminal to verify that your modules work:
+//    npm test
+// This uses Jest to run the farm.test.js file and check all core features.
