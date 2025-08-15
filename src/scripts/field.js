@@ -14,14 +14,16 @@ const fieldPlants = [];
  * - If it's an array (like Corn), we loop through it and push each plant individually.
  */
 export const addPlant = (seedObject) => {
-  if (!Array.isArray(seedObject)) {
-    fieldPlants.push(seedObject); // Add a single plant object
-  } else {
-    for (let seed of seedObject) {
-      fieldPlants.push(seed); // Add each corn plant object
+  if (Array.isArray(seedObject)) {
+    for (const seed of seedObject) {
+      fieldPlants.push(seed)
     }
-  }
-};
+}
+    else {
+      fieldPlants.push(seedObject)
+      }
+      return fieldPlants
+    };
 
 /**
  * Returns a copy of the plants array (fieldPlants).
@@ -35,6 +37,7 @@ export const addPlant = (seedObject) => {
  * This is good practice in modular code — only expose what is necessary.
  */
 export const usePlants = () => {
-  return structuredClone(fieldPlants);
+  const duplicateFieldPlants = structuredClone (fieldPlants);
+  return duplicateFieldPlants //return something
 };
 

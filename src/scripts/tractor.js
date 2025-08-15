@@ -18,35 +18,34 @@ import { addPlant } from "./field.js";
  * - Passes the result to the addPlant() function from field.js
  */
 export const plantSeeds = (plantingPlan) => {
-  const seeds = []
 
   for (let row of plantingPlan) {
 
     for (let plant of row) {
       if (plant === "Asparagus") {
-        let asparagusPlant = createAsparagus(plant)
-        seeds.push(asparagusPlant)
+        let asparagusPlant = createAsparagus()
+        addPlant(asparagusPlant)
       } else if (plant === "Potato") {
-        let potatoPlant = createPotato(plant)
-        seeds.push(potatoPlant)
+        let potatoPlant = createPotato()
+        addPlant(potatoPlant)
       } else if (plant === "Soybean") {
-        let soybeanPlant = createSoybean(plant)
-        seeds.push(soybeanPlant)
+        let soybeanPlant = createSoybean()
+        addPlant(soybeanPlant)
       } else if (plant === "Corn") {
-        let cornPlant = createCorn(plant)
-        seeds.push(cornPlant)
+        let cornPlant = createCorn()
+        addPlant(cornPlant)
       } else if (plant === "Wheat") {
-        let wheatPlant = createWheat(plant)
-        seeds.push(wheatPlant)
+        let wheatPlant = createWheat()
+        addPlant(wheatPlant)
       } else if (plant === "Sunflower") {
-        let sunflowerPlant = createSunflower(plant)
-        seeds.push(sunflowerPlant)
+        let sunflowerPlant = createSunflower()
+        addPlant(sunflowerPlant)
       }
     }
   }
 
-  return seeds
 }
 
 
-console.log(createAsparagus)
+// Testing createAsparagus
+// console.log(createAsparagus)
